@@ -1,0 +1,56 @@
+#container {
+			margin:0 auto; 
+			height:100vh;
+		}
+		#aside{ 
+			float:left; 
+			width:15%; 
+			height: 100vh;
+			background:rgb(11,167,163);
+			margin-left: auto;
+			margin-right: auto;
+		}
+		#content{ 
+			height: 100vh;
+			margin-left: 5%;
+			float:left; 
+		}
+		#logo{
+			margin-left: auto;
+			margin-right: auto;
+			width: 90%;
+		}
+		.tab{
+			text-align: center;
+			color: white;
+			font-size: 20px;
+			font-family:"微软雅黑"; 
+			margin-top: 8%;
+		}
+		#tab1{
+			color: rgb(11,167,163);
+			background-color: white;
+		}
+		#content1{
+			display: block;
+		}
+		#content2{
+			display: none;
+		}
+		#content3{
+			display: none;
+		}
+		#content4{
+			display: none;
+		}
+		#edit1{
+			background-color: rgb(11,167,163);
+			color: white;
+			font-size: 15px;
+		}
+		table{
+			border-collapse:collapse;
+		}
+		table,th,td{
+			border: 1px solid gray;
+		}
