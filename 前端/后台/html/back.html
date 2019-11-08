@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>后台管理</title>
+	<link rel="stylesheet" href="../css/back.css">
+</head>
+<body>
+	<div id="container">
+		<div id="aside">
+			<img src="../img/logo.png" id="logo">
+			<div id="tab1" class="tab" onclick="Tab(1)">
+				个人资料
+			</div>
+			<div id="tab2" class="tab" onclick="Tab(2)">
+				顺风车
+			</div>
+			<div id="tab3" class="tab" onclick="Tab(3)">
+				代取快递
+			</div>
+			<div id="tab4" class="tab" onclick="Tab(4)">
+				校园兼职
+			</div>	
+		</div>
+		<div id="content"> 
+			<div id="content1">
+				【版面用于放置“个人资料”信息表格】
+			</div>
+			<div id="content2">
+				【版面用于放置“顺风车”信息表格】
+			</div>
+			<div id="content3">
+				【版面用于放置“代取快递”信息表格】
+			</div>
+			<div id="content4">
+				【版面用于放置“校园兼职”信息表格】
+			</div>
+		</div>
+	</div>
+	<script language="javascript">
+		function Tab(num)
+		{
+			var i;
+			for(i=1;i<=4;i++)
+			{
+				if(i==num)
+				{
+					document.getElementById("content"+i).style.display="block";
+					document.getElementById("tab"+i).style.background="white";
+					document.getElementById("tab"+i).style.color="rgb(11,167,163)";
+				}
+				else
+				{
+					document.getElementById("content"+i).style.display="none";
+					document.getElementById("tab"+i).style.background="transparent";
+					document.getElementById("tab"+i).style.color="white";
+				}
+			}
+		}
+	</script>
+</body>
+</html>
