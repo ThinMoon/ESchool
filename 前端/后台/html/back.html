@@ -2,8 +2,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>后台管理</title>
-	<link rel="stylesheet" href="../css/back.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <link rel="stylesheet" href="../css/back.css">
+ <title>后台管理</title>
 </head>
 <body>
 	<div id="container">
@@ -20,43 +22,318 @@
 			</div>
 			<div id="tab4" class="tab" onclick="Tab(4)">
 				校园兼职
-			</div>	
+			</div>
+			
 		</div>
-		<div id="content"> 
-			<div id="content1">
-				【版面用于放置“个人资料”信息表格】
-			</div>
-			<div id="content2">
-				【版面用于放置“顺风车”信息表格】
-			</div>
-			<div id="content3">
-				【版面用于放置“代取快递”信息表格】
-			</div>
-			<div id="content4">
-				【版面用于放置“校园兼职”信息表格】
-			</div>
-		</div>
-	</div>
-	<script language="javascript">
-		function Tab(num)
-		{
-			var i;
-			for(i=1;i<=4;i++)
-			{
-				if(i==num)
-				{
-					document.getElementById("content"+i).style.display="block";
-					document.getElementById("tab"+i).style.background="white";
-					document.getElementById("tab"+i).style.color="rgb(11,167,163)";
-				}
-				else
-				{
-					document.getElementById("content"+i).style.display="none";
-					document.getElementById("tab"+i).style.background="transparent";
-					document.getElementById("tab"+i).style.color="white";
-				}
-			}
-		}
-	</script>
+
+        <div id="content"> 
+           <div id="content1">
+               <div id="Person">
+                <div class="add">
+                    <input type="text" v-model="addDetail.u_id" name="u_id" value="" placeholder="用户编号"/>
+                    <input type="text" v-model="addDetail.tel" name="tel" value="" placeholder="手机号"/>
+                    <input type="text" v-model="addDetail.username" name="username" value="" placeholder="用户名"/>
+                    <input type="text" v-model="addDetail.realname" name="realname" value="" placeholder="真实姓名"/>
+                    <input type="text" name="shengfenz" v-model="addDetail.shengfenz" placeholder="身份证号">
+                    <input type="text" name="password" v-model="addDetail.password" placeholder="密码">
+                    <button @click="adddetail">新增</button>
+                </div>
+                <table cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>用户编号</th>
+                            <th>手机号</th>
+                            <th>用户名</th>
+                            <th>真实姓名</th>
+                            <th>身份证号</th>
+                            <th>密码</th>
+                            <th>  </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) in newsList">
+                            <td>{{index+1}}</td>
+                            <td>{{item.u_id}}</td>
+                            <td>{{item.tel}}</td>
+                            <td>{{item.username}}</td>
+                            <td>{{item.realname}}</td>
+                            <td>{{item.shengfenz}}</td>
+                            <td>{{item.password}}</td>
+                            <td width="10%"><button @click="deletelist(item.id,index)" class="delete">删除</button>
+                               <button class="edit" @click="edit(item)">编辑</button></td>
+                           </tr>
+                       </tbody>
+                   </table>
+                   <div id="mask_user" v-if="editlist">
+                    <div class="mask">
+                        <div class="title01">
+                            编辑
+                            <span @click="editlist=false">x</span>
+                        </div>
+                        <div class="content01">
+                            <input type="text" v-model="editDetail.u_id" name="u_id" value="" placeholder="用户编号"/>
+                            <input type="text" v-model="editDetail.tel" name="tel" value="" placeholder="手机号"/>
+                            <input type="text" v-model="editDetail.username" name="username" value="" placeholder="用户名"/>
+                            <input type="text" v-model="editDetail.realname" name="realname" value="" placeholder="真实姓名"/>
+                            <input type="text" name="shengfenz" v-model="editDetail.shengfenz" placeholder="身份证号"/>
+                            <input type="text" name="password" v-model="editDetail.password" placeholder="密码"/>
+                            <button @click="update">更新</button>
+                            <button @click="editlist=false">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var app = new Vue({
+                    el: '#Person',
+                    data: {
+                        addDetail: {},
+                        editlist: false,
+                        editDetail: {},
+                        newsList: [{u_id:'123',tel:'13100000000',username:'a',realname:'A',shengfenz:'350000000000000000',password:'123'}],
+                        editid: ''
+                    },
+                    mounted() {
+
+                    },
+                    methods: {
+
+            //新增
+            adddetail() {
+                this.newsList.push({
+                    u_id:this.addDetail.u_id,
+                    tel: this.addDetail.tel,
+                    username: this.addDetail.username,
+                    realname: this.addDetail.realname,
+                    shengfenz:this.addDetail.shengfenz,
+                    password:this.addDetail.password,
+                })
+
+
+
+            },
+            //删除
+            deletelist(id, i) {
+                this.newsList.splice(i, 1);
+
+            },
+            //编辑
+            edit(item) {
+                this.editDetail = {
+                    u_id:item.u_id,
+                    tel: item.tel,
+                    username: item.username,
+                    realname: item.realname,
+                    shengfenz:item.shengfenz,
+                    password:item.password,
+                    id: item.u_id
+                };
+                this.editlist = true;
+                this.editid = item.u_id
+
+            },
+            //确认更新
+            update() {
+
+                let Uthis = this
+                for (let i = 0; i < Uthis.newsList.length; i++) {
+                    if (Uthis.newsList[i].u_id == this.editid) {
+                        Uthis.newsList[i] = {
+                            u_id:Uthis.editDetail.u_id,
+                            tel: Uthis.editDetail.tel,
+                            username: Uthis.editDetail.username,
+                            realname: Uthis.editDetail.realname,
+                            shengfenz:Uthis.editDetail.shengfenz,
+                            password:Uthis.editDetail.password,
+                            id: this.editid
+                        };
+                        this.editlist = false
+                    }
+                }
+            }
+        }
+    })
+    </script>
+</div>
+
+
+
+<div id="content2">
+  <div id="CarTable">
+   <div class="add">
+      <input type="text" v-model="addDetail.car_id" name="car_id" value="" placeholder="订单号"/>
+      <input type="text" v-model="addDetail.car_style" name="car_style" value="" placeholder="车型"/>
+      <input type="text" v-model="addDetail.car_number" name="car_number" value="" placeholder="车牌号"/>
+      <input type="text" v-model="addDetail.car_start" name="car_start" placeholder="出发地">
+      <input type="text" v-model="addDetail.car_stop" name="car_stop" value="" placeholder="目的地"/>
+      <input type="text" v-model="addDetail.car_start_time" name="car_start_time" value="" placeholder="出发时间"/>
+      <input type="text" v-model="addDetail.car_tel" name="car_tel" placeholder="乘车人联系方式">
+      <input type="text" v-model="addDetail.car_money" name="car_money" placeholder="报酬">
+      <input type="text" v-model="addDetail.car_beizhu" name="car_beizhu" value="" placeholder="备注"/>
+      <button @click="adddetail">新增</button>
+  </div>
+  <table cellpadding="0" cellspacing="0">
+     <thead>
+      <tr>
+         <th>序号</th>
+         <th>订单号</th>
+         <th>车型</th>
+         <th>车牌号</th>
+         <th>出发地</th>
+         <th>目的地</th>
+         <th>出发时间</th>
+         <th>乘车人联系方式</th>
+         <th>报酬</th>
+         <th>备注</th>
+         <th></th>
+     </tr>
+ </thead>
+ <tbody>
+  <tr v-for="(car,index) in newsList">
+     <td>{{index+1}}</td>
+     <td>{{car.car_id}}</td>
+     <td>{{car.car_style}}</td>
+     <td>{{car.car_number}}</td>
+     <td>{{car.car_start}}</td>
+     <td>{{car.car_stop}}</td>
+     <td>{{car.car_start_time}}</td>
+     <td>{{car.car_tel}}</td>
+     <td>{{car.car_money}}</td>
+     <td>{{car.car_beizhu}}</td>
+     <td width="10%"><button @click="deletelist(car.id,index)" class="delete">删除</button><button class="edit" @click="edit(car)">编辑</button></td>
+
+ </tr>
+   </tbody>
+</table> 
+<div id="mask_car" v-if="editlist">
+  <div class="mask">
+     <div class="title01">
+        编辑
+        <span @click="editlist=false">x</span>
+    </div>
+    <div class="content01">
+        <input type="text" v-model="editDetail.car_id" name="car_id" value="" placeholder="订单号"/>
+        <input type="text" v-model="editDetail.car_style" name="car_style" value="" placeholder="车型"/>
+        <input type="text" v-model="editDetail.car_number" name="car_number" value="" placeholder="车牌号"/>
+        <input type="text" v-model="editDetail.car_start" name="car_start" placeholder="出发地">
+        <input type="text" v-model="editDetail.car_stop" name="car_stop" value="" placeholder="目的地"/>
+        <input type="text" v-model="editDetail.car_start_time" name="car_start_time" value="" placeholder="出发时间"/>
+        <input type="text" v-model="editDetail.car_tel" name="car_tel" placeholder="乘车人联系方式"/>
+        <input type="text" v-model="editDetail.car_money" name="car_money" placeholder="报酬"/>
+        <input type="text" v-model="editDetail.car_beizhu" name="car_beizhu" value="" placeholder="备注"/>
+        <button @click="update">更新</button>
+        <button @click="editlist=false">取消</button>
+    </div>
+</div>
+</div>				
+</div>
+<script type="text/javascript">
+ var car_app=new Vue({
+          el:'#CarTable',
+          data:{
+     addDetail: {},
+     editlist: false,
+     editDetail: {},
+     newsList: [{car_id:1,car_style:'自行车',car_number:'E123456',car_start:'35#',car_stop:'东三',car_start_time:'10:00',car_tel:'13123456789',car_money:'1',car_beizhu:'无'}],
+     editid: ''         
+       },
+      mounted() {
+
+ },
+ methods: {
+           		 //新增
+                    adddetail() {
+                       this.newsList.push({
+                          car_id: this.addDetail.car_id,
+                          car_style: this.addDetail.car_style,
+                          car_number: this.addDetail.car_number,
+                          car_start:this.addDetail.car_start,
+                          car_stop:this.addDetail.car_stop,
+                          car_start_time:this.addDetail.car_start_time,
+                          car_tel:this.addDetail.car_tel,
+                          car_money:this.addDetail.car_money,
+                          car_beizhu:this.addDetail.car_beizhu
+                      })
+                   },
+            	//删除
+            	deletelist(id, i) {
+            		this.newsList.splice(i, 1);
+            	},
+            	//编辑
+            	edit(car) {
+            		this.editDetail = {
+            			car_id: car.car_id,
+            			car_style: car.car_style,
+            			car_number: car.car_number,
+            			car_start:car.car_start,
+            			car_stop:car.car_stop,
+            			car_start_time:car.car_start_time,
+            			car_tel: car.car_tel,
+            			car_money:car.car_money,
+            			car_beizhu:car.car_beizhu,
+            			id: car.car_id
+            		};
+                   this.editlist = true;
+                   this.editid = car.car_id
+               },
+            	//确认更新
+            	update() {
+            		let Uthis = this
+            		for (let i = 0; i < Uthis.newsList.length; i++) {
+                      if (Uthis.newsList[i].car_id == this.editid) {
+                         Uthis.newsList[i] = {
+                            car_id: Uthis.editDetail.car_id,
+                            car_style: Uthis.editDetail.car_style,
+                            car_number: Uthis.editDetail.car_number,
+                            car_start:Uthis.editDetail.car_start,
+                            car_stop:Uthis.editDetail.car_stop,
+                            car_start_time: Uthis.editDetail.car_start_time,
+                            car_tel: Uthis.editDetail.car_tel,
+                            car_money: Uthis.editDetail.car_money,
+                            car_beizhu:Uthis.editDetail.car_beizhu,
+                            id: this.editid
+                        };
+                        this.editlist = false
+                    }
+                }
+            }
+        }
+    })
+</script>
+
+
+</div>
+
+
+
+<div id="content3">
+ 
+</div>
+
+<div id="content4">
+    
+</div>
+<script language="javascript">
+  function Tab(num)
+  {
+     var i;
+     for(i=1;i<=4;i++)
+     {
+        if(i==num)
+        {
+           document.getElementById("content"+i).style.display="block";
+           document.getElementById("tab"+i).style.background="white";
+           document.getElementById("tab"+i).style.color="rgb(11,167,163)";
+       }
+       else
+       {
+           document.getElementById("content"+i).style.display="none";
+           document.getElementById("tab"+i).style.background="transparent";
+           document.getElementById("tab"+i).style.color="white";
+       }
+   }
+}
+</script>
 </body>
 </html>
