@@ -16,9 +16,9 @@
         <div class="row  clearfix">
             <div class="e_navbar">
                 <ul class="nav nav-pills" id="enav">
-                        <li class="col-xs-4 col-md-4 col-lg-4 eli" id='li1'><a href="#">个人资料</a></li>
-                        <li class="col-xs-4 col-md-4 col-lg-4 eli" id='li2'><a href="#">我的订单</a></li>
-                        <li class="col-xs-4 col-md-4 col-lg-4 eli navchosed" id='li3'><a href="#" class="navchosed">帮助</a></li>
+                        <li class="col-xs-4 col-md-4 col-lg-4 eli" id='li4' onclick="gotoli4()"><a href="#">个人资料</a></li>
+                        <li class="col-xs-4 col-md-4 col-lg-4 eli" id='li5' onclick="gotoli5()"><a href="#">我的订单</a></li>
+                        <li class="col-xs-4 col-md-4 col-lg-4 eli navchosed" id='li6'  onclick="gotoli6()"><a href="#" class="navchosed">帮助</a></li>
                 </ul>
                 <div class="smbody">
 					<br><br><br><br>
@@ -30,10 +30,11 @@
         </div>
         <img src="../pic/logo.png" id="elogo" alt="">
         <div id="topbtn">
-            <button class="btn btn-default" type="submit" id="tohomepage">返回主页</button>
-            <button class="btn btn-default" type="submit" id="toquit">退出</button>
+            <button class="btn btn-default" type="submit" id="tohomepage" onclick="gotohomepage()">返回主页</button>
+            <button class="btn btn-default" type="submit" id="toquit" onclick="gotoquit()">退出</button>
         </div>
     </div>
+    <script src="../js/e.js"></script>
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->

@@ -48,6 +48,9 @@ label{
     background-color: rgba(255, 255, 255, 0.842);
     min-height: 450px;
 }
+.orderBody{
+    min-height: 250px;
+}
 .el-form-item__label {
     white-space: pre-wrap;
     font-size: 90%;
@@ -81,6 +84,7 @@ label{
     /* padding-left: 0%; */
     padding-top: 4%;
     padding-left: 10%;
+    overflow:hidden;
 }
 .btn-downn{
     background-color: rgb(47,115,160);
@@ -102,16 +106,21 @@ label{
     padding-left: 0%;
     padding-right: 0%;
 }
-
+.orderDetail{
+    bottom: 7px;
+    position: absolute;
+    right: 15px;
+}
 #kd_orderDetail,#work_orderDetail{
-    padding-left: 40%
+    /* padding-left: 40% */
 }
 #work_pay,#kd_pay,#car_pay{
-    padding-bottom: 10%;
+    padding-bottom: 20%;
 }
 .usereachBody{
     box-shadow:3px 3px 6px rgb(173, 173, 173);   
     background-color: RGB(242,242,242);
+    position: relative;
 }
 #elogo{
     width: 11%;
@@ -124,7 +133,7 @@ label{
     top:2%;
     right:3%;
 }
-#tohomepage{
+#tohomepage,#tomypage{
     margin-right:8px;
     background-color: white;
     color: rgb(47,115,160);
@@ -135,7 +144,7 @@ label{
     border: 1px solid white;
     color: white;
 }
-#li1,#li2,#li3,#li4 {
+#li1,#li2,#li3,#li4,#li5,#li6,#li7{
     margin-left: 0px;
 }
 #classify{
@@ -147,10 +156,10 @@ label{
     background-color: rgb(47,115,160);
 }
 #car_img,#work_img{
-    height: 50px;
+    height: 40px;
 }
 #kd_img{
-    height: 40px;
+    height: 32px;
     padding-top: 4%;
     padding-left: 5%;
 }
@@ -169,11 +178,11 @@ label{
         width: 700px;
     }
 }
-.nav>#li4>.col-lg{
+.nav>#li7>.col-lg{
     padding-left: 1px;
 } 
 
- .nav>#li4>a {
+ .nav>#li7>a {
     position: relative;
     display: block;
     padding: 8px 0px;
