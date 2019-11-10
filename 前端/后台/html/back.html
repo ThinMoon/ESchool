@@ -480,7 +480,162 @@
 
 </div>
 <div id="content4">
-    
+    <div id="WorkTable">
+        <div class="add">
+            <input type="text" v-model="addDetail.s_id" name="s_id" value="" placeholder="兼职ID"/>
+            <input type="text" v-model="addDetail.Publisher" name="Publisher" value="" placeholder="发布者"/>
+            <input type="text" v-model="addDetail.Taker" name="Taker" value="" placeholder="接单者"/>
+            <input type="text" v-model="addDetail.s_name" name="s_name" value="" placeholder="商家名"/>
+            <input type="text" v-model="addDetail.s_adress" name="s_adress" value="" placeholder="店铺地址"/>
+            <input type="text" v-model="addDetail.s_tel" name="s_tel" value="" placeholder="商家电话"/>
+            <input type="text" v-model="addDetail.work_time" name="work_time" value="" placeholder="兼职时间"/>
+            <input type="text" v-model="addDetail.work_content" name="work_content" value="" placeholder="兼职内容"/>
+            <input type="text" v-model="addDetail.work_money" name="work_money" value="" placeholder="兼职报酬"/>
+            <input type="text" v-model="addDetail.need_person" name="need_person" value="" placeholder="需求人数"/>
+            <input type="text" v-model="addDetail.beizhu" name="beizhu" value="" placeholder="备注"/>
+            <button @click="adddetail">新增</button>
+        </div>
+        <table cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>兼职ID</th>
+                    <th>发布者</th>
+                    <th>接单者</th>
+                    <th>商家名</th>
+                    <th>店铺地址</th>
+                    <th>商家电话</th>
+                    <th>兼职时间</th>
+                    <th>兼职内容</th>
+                    <th>兼职报酬</th>
+                    <th>需求人数</th>
+                    <th>备注</th>
+                    <th>  </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(work,index) in newsList">
+                    <td>{{index+1}}</td>
+                    <td>{{work.s_id}}</td>
+                    <td>{{work.Publisher}}</td>
+                    <td>{{work.Taker}}</td>
+                    <td>{{work.s_name}}</td>
+                    <td>{{work.s_adress}}</td>
+                    <td>{{work.s_tel}}</td>
+                    <td>{{work.work_time}}</td>
+                    <td>{{work.work_content}}</td>
+                    <td>{{work.work_money}}</td>
+                    <td>{{work.need_person}}</td>
+                    <td>{{work.beizhu}}</td>
+                    <td width="10%"><button @click="deletelist(work.s_id,index)" class="delete">删除</button><button class="edit" @click="edit(work)">编辑</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="mask_work" v-if="editlist">
+            <div class="mask">
+                <div class="title01">
+                    编辑
+                    <span @click="editlist=false">x</span>
+                </div>
+                <div class="content01">
+                    <input type="text" v-model="editDetail.s_id" name="s_id" value="" placeholder="兼职ID"/>
+                    <input type="text" v-model="editDetail.Publisher" name="Publisher" value="" placeholder="发布者"/>
+                    <input type="text" v-model="editDetail.Taker" name="Taker" value="" placeholder="接单者"/>
+                    <input type="text" v-model="editDetail.s_name" name="s_name" value="" placeholder="商家名"/>
+                    <input type="text" v-model="editDetail.s_adress" name="s_adress" value="" placeholder="店铺地址"/>
+                    <input type="text" v-model="editDetail.s_tel" name="s_tel" value="" placeholder="商家电话"/>
+                    <input type="text" v-model="editDetail.work_time" name="work_time" value="" placeholder="兼职时间"/>
+                    <input type="text" v-model="editDetail.work_content" name="work_content" value="" placeholder="兼职内容"/>
+                    <input type="text" v-model="editDetail.work_money" name="work_money" value="" placeholder="兼职报酬"/>
+                    <input type="text" v-model="editDetail.need_person" name="need_person" value="" placeholder="需求人数"/>
+                    <input type="text" v-model="editDetail.beizhu" name="beizhu" value="" placeholder="备注"/>
+                    <button @click="update">更新</button>
+                    <button @click="editlist=false">取消</button>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var work_app = new Vue({
+                    el: '#WorkTable',
+                    data: {
+                        addDetail: {},
+                        editlist: false,
+                        editDetail: {},
+                        newsList: [{s_id:'123456',Publisher:2,Taker:4,s_name:'小吃店',s_adress:'玫瑰2楼',s_tel:'13123456789',work_time:'FriNoon',work_content:'希望',work_money:'20/h',need_person:'5',beizhu:'无'}],
+                    },
+                    mounted() {
+
+                    },
+                    methods: {
+
+            //新增
+            adddetail() {
+                this.newsList.push({
+                    s_id: this.addDetail.s_id,
+                    Publisher:this.addDetail.Publisher,
+                    Taker:this.addDetail.Taker,
+                    s_name: this.addDetail.s_name,
+                    s_adress:this.addDetail.s_adress,
+                    s_tel:this.addDetail.s_tel,
+                    work_time: this.addDetail.work_time,
+                    work_content: this.addDetail.work_content,
+                    work_money:this.addDetail.work_money,
+                    need_person:this.addDetail.need_person,
+                    beizhu:this.addDetail.beizhu,
+                })
+
+
+
+            },
+            //删除
+            deletelist(s_id, i) {
+                this.newsList.splice(i, 1);
+
+            },
+            //编辑
+            edit(work) {
+                this.editDetail = {
+                    s_id: work.s_id,
+                    Publisher:work.Publisher,
+                    Taker:work.Taker,
+                    s_name: work.s_name,
+                    s_adress: work.s_adress,
+                    s_tel:work.s_tel,
+                    work_time:work.work_time,
+                    work_content: work.work_content,
+                    work_money: work.work_money,
+                    need_person:work.need_person,
+                    beizhu:work.beizhu,
+                };
+                this.editlist = true;
+
+            },
+            //确认更新
+            update() {
+
+                let Uthis = this
+                for (let i = 0; i < Uthis.newsList.length; i++) {
+                    if (Uthis.newsList[i].s_id == this.editDetail.s_id) {
+                        Uthis.newsList[i] = {
+                            s_id: Uthis.editDetail.s_id,
+                            Publisher:Uthis.editDetail.Publisher,
+                            Taker:Uthis.editDetail.Taker,
+                            s_name: Uthis.editDetail.s_name,
+                            s_adress: Uthis.editDetail.s_adress,
+                            s_tel:Uthis.editDetail.s_tel,
+                            work_time:Uthis.editDetail.work_time,
+                            work_content: Uthis.editDetail.work_content,
+                            work_money: Uthis.editDetail.work_money,
+                            need_person:Uthis.editDetail.need_person,
+                            beizhu:Uthis.editDetail.beizhu,
+                        };
+                        this.editlist = false
+                    }
+                }
+            }
+        }
+    })
+</script>
 </div>
 
 </div>
