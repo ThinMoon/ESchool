@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itlike.mapper.KdMapper">
+
+    <resultMap id="BaseResultMap" type="com.itlike.domain.Kd" >
+
+        <!-- <result column="car_id" property="car_id" jdbcType="INT" />-->
+        <result column="kd_number" property="kd_number" jdbcType="TINYINT" />
+        <result column="kd_company" property="kd_company" jdbcType="DOUBLE" />
+        <result column="kd_name" property="kd_name" jdbcType="VARCHAR" />
+        <result column="kd_tel" property="kd_tel" jdbcType="VARCHAR" />
+        <result column="kd_adress" property="kd_adress" jdbcType="VARCHAR" />
+        <result column="kd_money" property="kd_money" jdbcType="VARCHAR" />
+        <result column="latest_time" property="latest_time" jdbcType="DOUBLE" />
+        <result column="kd_beizhu" property="kd_beizhu" jdbcType="VARCHAR" />
+
+    </resultMap>
+    <insert id="insertKd">
+        insert into `kd`(kd_number,kd_company,kd_name,kd_tel,kd_adress,kd_money,latest_time,kd_beizhu)
+        values (#{kd_number},#{kd_company},#{kd_name},#{kd_tel},#{kd_adress},#{kd_money},#{latest_time},#{kd_beizhu})
+    </insert>
+
+    <select id="findKdId" resultMap="BaseResultMap">
+        select * from kd where kd_id=#{kid}
+    </select>
+
+    <select id="findKdAll" resultMap="BaseResultMap">
+        select * from kd
+    </select>
+
+    <delete id="deleteKdId">
+        delete from kd where kd_id=#{kid}
+    </delete>
+
+    <update id="updateKdId">
+        update kd set
+        kd_number = #{kd_number},
+        kd_company = #{kd_company},
+        kd_name =    #{kd_name},
+        kd_tel=#{kd_tel},
+        kd_adress=#{kd_adress},
+        kd_money=#{kd_money},
+        latest_time=#{latest_time}
+         where kd_id = #{kd_id}
+
+    </update>
+
+</mapper>

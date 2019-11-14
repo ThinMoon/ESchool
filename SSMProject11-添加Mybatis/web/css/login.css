@@ -1,0 +1,155 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,body{
+    width:100%;
+    height: 100%;
+}
+body{
+    background: url("../image/3.jpg") no-repeat;
+    background-size: 100% 100%;
+
+}
+#login_body{
+    height: 600px;
+   /* background-image: url("../image/login_bg.png");*/
+    background-position: center center;
+}
+
+.login_b_center{
+    width: 1200px;
+    height: 600px;
+    margin: 0 auto;
+    position: relative;
+ /*   background: #ff4400;*/
+}
+.project_title{
+    color: firebrick;
+    position: absolute;
+    width: 400px;
+    height: 45px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 楷体;
+    right:400px;
+    top: 200px;
+    letter-spacing:.8em;
+}
+#login_body .login_bg{
+    width: 400px;
+    height: 351px;
+    /*background: rgba(355,355,355,0.9);*/
+    border: 1px solid ghostwhite;
+    position: absolute;
+    right:400px;
+    top: 245px;
+    padding: 30px;
+}
+.password_forget a:first-child{
+    color: cadetblue;
+}
+
+
+.login_bg div{
+
+    height: 40px;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+.login_bg .userName span{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-image: url("../image/userName_Icon.png" );
+    float: left;
+    border: 1px solid #cccccc;
+}
+.login_bg .userName input {
+    height: 40px;
+    width: 250px;
+    float: left;
+    padding-left: 5px;
+    background: none;
+    color: white;
+}
+.login_bg .password span{
+    display: inline-block;
+    height: 40px;
+    border: 1px solid #cccccc;
+    width: 40px;
+    background-image: url("../image/password_Icon.png");
+    float: left;
+
+}
+.login_bg .password input{
+    height: 40px;
+    width: 250px;
+    float: left;
+    padding-left: 5px;
+    background: none;
+    color: white;
+}
+.login_bg .hrh input{
+    /*background-color: #ff4400;*/
+    color: white;
+    width: 290px;
+    font-size: 20px;
+    border: none;
+    height: 40px;
+    border-radius: 1px;
+    background: firebrick;
+
+}
+.login_bg .password_forget {
+    text-align: right;
+    margin-top: 40px;
+
+
+}
+.login_bg .password_forget a {
+    color: black;
+    font-size: 10px;
+    margin-left: 5px;
+}
+a{
+    text-decoration: none;
+    font-size: 15px;
+}
+.login_bg .hrh input:hover{
+    color:white;
+    border: 2px red;
+    background: red;
+}
+.login_bg .hrh input:visited{
+    color:red;
+    border: 2px red;
+    background: white;
+}
+
+.text-effect{
+    display: block;
+    font-size: 70px;
+    color:whitesmoke;
+    text-align: center;
+    text-shadow: 0px -1px 4px white, 0px -2px 10px yellow, 0px -10px 20px #ff8000, 0px -18px 40px red;
+    position: absolute;
+    right:400px;
+    top: 120px;
+    letter-spacing:.8em;
+
+    font-family: 楷体;
+
+}
+@media only screen and (max-width: 990px){
+    .text-effect{ font-size: 100px; }
+}
+@media only screen and (max-width: 767px){
+    .text-effect{ font-size: 80px; }
+}
+@media only screen and (max-width: 479px){
+    .text-effect{ font-size: 50px; }
+}
+
+

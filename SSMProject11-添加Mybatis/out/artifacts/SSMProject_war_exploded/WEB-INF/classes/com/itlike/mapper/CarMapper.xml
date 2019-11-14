@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itlike.mapper.CarMapper">
+
+    <resultMap id="BaseResultMap" type="com.itlike.domain.Car" >
+
+        <!-- <result column="car_id" property="car_id" jdbcType="INT" />-->
+        <result column="car_style" property="car_style" jdbcType="TINYINT" />
+        <result column="car_number" property="car_number" jdbcType="DOUBLE" />
+        <result column="car_start" property="car_start" jdbcType="VARCHAR" />
+        <result column="car_stop" property="car_stop" jdbcType="VARCHAR" />
+        <result column="car_start_time" property="car_start_time" jdbcType="VARCHAR" />
+        <result column="car_tel" property="car_tel" jdbcType="VARCHAR" />
+        <result column="car_money" property="car_money" jdbcType="DOUBLE" />
+        <result column="car_beizhu" property="car_beizhu" jdbcType="VARCHAR" />
+
+    </resultMap>
+    <insert id="insertCar">
+        insert into `car`(car_style,car_number,car_start,car_stop,car_start_time,car_tel,car_money,car_beizhu)
+        values (#{car_style},#{car_number},#{car_start},#{car_stop},#{car_start_time},#{car_tel},#{car_money},#{car_beizhu})
+    </insert>
+    <select id="findByCarId" resultMap="BaseResultMap">
+        select * from car where car_id = #{carId}
+    </select>
+    <delete id="deleteCar">
+        delete from car where car_id = #{cid}
+    </delete>
+
+    <select id="findAllCar" resultMap="BaseResultMap">
+        select * from car
+    </select>
+    <update id="updateCar">
+        update car set
+        car_number=#{car_number},
+        car_start=#{car_start},
+        car_stop=#{car_stop},
+        car_start_time=#{car_start_time},
+        car_tel=#{car_tel},
+        car_money=#{car_money},
+        car_beizhu=#{car_beizhu}
+        where car_id=#{car_id}
+    </update>
+</mapper>
